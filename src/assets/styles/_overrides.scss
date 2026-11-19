@@ -1,0 +1,615 @@
+// ============================================================================
+// LoanCore CRM — Global refinements & Bootstrap polish (3-Color VTB Theme)
+// ============================================================================
+
+body {
+  background-color: $surface-bg;
+  color: $ink;
+  font-family: $font-sans;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: $blue-100;
+  color: $blue-900;
+}
+
+// Buttons ---------------------------------------------------------------
+.btn {
+  letter-spacing: 0.005em;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+// Icon-only buttons with consistent height and alignment
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.btn-icon-sm {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+// Primary Action Buttons (matching the red "+ Новый кредит" CTA in image)
+.btn-primary,
+.btn-cta {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #{$red-500};
+  --bs-btn-border-color: #{$red-500};
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #{$red-600};
+  --bs-btn-hover-border-color: #{$red-600};
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #{$red-700};
+  --bs-btn-active-border-color: #{$red-700};
+  --bs-btn-disabled-color: rgba(255, 255, 255, 0.7);
+  --bs-btn-disabled-bg: #{$red-300};
+  --bs-btn-disabled-border-color: #{$red-300};
+  --bs-btn-focus-shadow-rgb: 235, 62, 59;
+  box-shadow: $shadow-cta;
+}
+
+// Royal Blue button alternative (for dialer or secondary actions)
+.btn-blue {
+  color: #ffffff;
+  background-color: $blue-600;
+  border-color: $blue-600;
+
+  &:hover {
+    color: #ffffff;
+    background-color: $blue-700;
+    border-color: $blue-700;
+  }
+}
+
+// Clean White Outline & Secondary buttons
+.btn-outline-primary {
+  --bs-btn-color: #{$blue-600};
+  --bs-btn-border-color: #{$blue-200};
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #{$blue-600};
+  --bs-btn-hover-border-color: #{$blue-600};
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #{$blue-700};
+  --bs-btn-active-border-color: #{$blue-700};
+  --bs-btn-focus-shadow-rgb: 21, 50, 152;
+  background: #ffffff;
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: #{$ink-2};
+  --bs-btn-border-color: #{$border-medium};
+  --bs-btn-hover-bg: #{$surface-muted};
+  --bs-btn-hover-color: #{$ink};
+  --bs-btn-hover-border-color: #{$border-medium};
+  --bs-btn-active-bg: #{$surface-muted};
+  --bs-btn-active-color: #{$ink};
+  --bs-btn-active-border-color: #{$border-medium};
+  background: #ffffff;
+}
+
+.btn-light {
+  --bs-btn-bg: #ffffff;
+  --bs-btn-border-color: #{$border-light};
+  --bs-btn-hover-bg: #{$surface-subtle};
+  --bs-btn-hover-border-color: #{$border-medium};
+  color: #{$ink};
+}
+
+// Button groups used as segmented filters (like top tabs in reference)
+.btn-group-sm > .btn-outline-secondary {
+  background: #ffffff;
+}
+
+.btn-group-sm > .btn-primary {
+  box-shadow: none;
+}
+
+// Forms -----------------------------------------------------------------
+.form-control,
+.form-select {
+  border-color: $border-medium;
+  color: $ink;
+  background-color: #ffffff;
+
+  &::placeholder {
+    color: $ink-4;
+  }
+
+  &:focus {
+    border-color: $blue-600;
+    box-shadow: 0 0 0 3px rgba(21, 50, 152, 0.12);
+  }
+}
+
+.form-label {
+  color: $ink;
+}
+
+.form-check-input:checked {
+  background-color: $blue-600;
+  border-color: $blue-600;
+}
+
+.form-check-input:focus {
+  border-color: $blue-400;
+  box-shadow: 0 0 0 3px rgba(21, 50, 152, 0.12);
+}
+
+.input-group-text {
+  border-color: $border-medium;
+  background-color: #ffffff;
+}
+
+// Badges / alerts / progress ------------------------------------------------
+.badge {
+  letter-spacing: 0.01em;
+}
+
+.alert-primary {
+  --bs-alert-bg: #{$blue-50};
+  --bs-alert-border-color: #{$blue-100};
+  --bs-alert-color: #{$blue-800};
+}
+
+.progress {
+  background-color: $surface-muted;
+}
+
+.progress-bar {
+  transition: width 0.4s ease;
+  background-color: $blue-600;
+}
+
+.progress-thin {
+  height: 6px;
+  border-radius: 999px;
+}
+
+.progress-medium {
+  height: 9px;
+  border-radius: 999px;
+}
+
+// Utilities ---------------------------------------------------------------
+.font-mono {
+  font-family: $font-mono;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.84rem;
+}
+
+.fw-extrabold {
+  font-weight: 800 !important;
+}
+
+.text-brand {
+  color: $blue-600 !important;
+}
+
+.text-cta {
+  color: $red-500 !important;
+}
+
+.bg-brand-soft {
+  background-color: $blue-50 !important;
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+// Focus visibility for keyboard users
+:focus-visible {
+  outline: 2px solid $blue-600;
+  outline-offset: 2px;
+}
+
+// ============================================================================
+// SweetAlert2 LoanCore CRM Theme Styling
+// ============================================================================
+.crm-swal-popup {
+  border-radius: 16px !important;
+  padding: 1.75rem !important;
+  box-shadow: 0 16px 40px rgba(9, 26, 87, 0.16) !important;
+  font-family: $font-sans !important;
+  border: 1px solid rgba(21, 50, 152, 0.1) !important;
+
+  .crm-swal-title {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: $ink !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .crm-swal-text {
+    font-size: 0.88rem !important;
+    color: $ink-3 !important;
+    line-height: 1.5 !important;
+  }
+
+  .swal2-icon {
+    margin: 0.75rem auto 1.1rem !important;
+  }
+
+  .swal2-icon.swal2-warning {
+    border-color: $warning-color !important;
+    color: $warning-color !important;
+  }
+}
+
+// ============================================================================
+// Mobile Application Web Layout Polish
+// ============================================================================
+@media (max-width: 991.98px) {
+  // Safe-area-aware mobile app shell
+  .crm-app-shell {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  // Mobile Topbar App Bar
+  .crm-topbar {
+    border-bottom: 1px solid rgba(21, 50, 152, 0.08);
+    box-shadow: 0 2px 10px rgba(18, 42, 130, 0.04);
+  }
+
+  // Smooth touch scrolling
+  .crm-content-area,
+  .crm-table-wrapper,
+  .crm-modal-body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+// ============================================================================
+// Mobile View Scaling: Reduced size of all text, icons, buttons, and cards (<992px)
+// ============================================================================
+@media (max-width: 991.98px) {
+  // 1. Text Scaling
+  html {
+    font-size: 13.5px !important; // Gracefully scales down all rem units
+  }
+
+  h1, .h1 { font-size: 1.35rem !important; }
+  h2, .h2 { font-size: 1.22rem !important; }
+  h3, .h3 { font-size: 1.1rem !important; }
+  h4, .h4 { font-size: 0.98rem !important; }
+  h5, .h5 { font-size: 0.88rem !important; }
+  h6, .h6 { font-size: 0.8rem !important; }
+
+  .fs-1 { font-size: 1.3rem !important; }
+  .fs-2 { font-size: 1.18rem !important; }
+  .fs-3 { font-size: 1.05rem !important; }
+  .fs-4 { font-size: 0.95rem !important; }
+  .fs-5 { font-size: 0.85rem !important; }
+  .fs-6 { font-size: 0.78rem !important; }
+
+  .text-sm { font-size: 0.78rem !important; }
+  .text-xs { font-size: 0.68rem !important; }
+
+  .badge {
+    font-size: 0.68rem !important;
+    padding: 0.2rem 0.45rem !important;
+  }
+
+  // 2. Icon Scaling
+  svg.lucide,
+  .btn svg,
+  .crm-panel svg,
+  .card svg,
+  .modal-dialog svg {
+    max-width: 15px;
+    max-height: 15px;
+  }
+
+  .metric-icon-box {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 8px !important;
+    svg {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+
+  .btn-icon {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    border-radius: 6px !important;
+    svg {
+      width: 13px !important;
+      height: 13px !important;
+    }
+  }
+
+  .btn-icon-sm {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    border-radius: 5px !important;
+    svg {
+      width: 11px !important;
+      height: 11px !important;
+    }
+  }
+
+  // 3. Button Scaling
+  .btn {
+    font-size: 0.76rem !important;
+    padding: 0.28rem 0.6rem !important;
+    min-height: 30px !important;
+    border-radius: 6px !important;
+    gap: 0.25rem !important;
+  }
+
+  .btn-sm {
+    font-size: 0.7rem !important;
+    padding: 0.18rem 0.42rem !important;
+    min-height: 24px !important;
+    border-radius: 5px !important;
+  }
+
+  .btn-lg {
+    font-size: 0.82rem !important;
+    padding: 0.38rem 0.75rem !important;
+    min-height: 34px !important;
+  }
+
+  .btn-group .btn {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  // Form Controls
+  .form-control,
+  .form-select {
+    font-size: 0.78rem !important;
+    min-height: 32px !important;
+    padding: 0.28rem 0.55rem !important;
+    border-radius: 6px !important;
+  }
+
+  .form-label {
+    font-size: 0.74rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  // 4. Card & Panel Scaling
+  .crm-panel,
+  .crm-card,
+  .card {
+    padding: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 10px !important;
+  }
+
+  .crm-metric-card {
+    padding: 0.75rem !important;
+    border-radius: 10px !important;
+
+    .metric-value {
+      font-size: 1.25rem !important;
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      font-size: 0.62rem !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    .metric-subtext {
+      font-size: 0.7rem !important;
+    }
+  }
+
+  .funnel-stepper {
+    gap: 0.4rem !important;
+
+    .funnel-step {
+      padding: 0.5rem 0.65rem !important;
+      border-radius: 8px !important;
+
+      .fs-4 {
+        font-size: 1rem !important;
+      }
+
+      .step-index {
+        width: 18px !important;
+        height: 18px !important;
+        font-size: 0.62rem !important;
+      }
+
+      .text-xs {
+        font-size: 0.62rem !important;
+      }
+    }
+  }
+
+  .target-gauge-card {
+    padding: 0.85rem !important;
+    border-radius: 12px !important;
+
+    .gauge-circle-wrap {
+      width: 72px !important;
+      height: 72px !important;
+    }
+
+    .gauge-number {
+      font-size: 1.1rem !important;
+    }
+
+    .gauge-caption {
+      font-size: 0.58rem !important;
+    }
+
+    .gauge-chip {
+      font-size: 0.64rem !important;
+      padding: 0.18rem 0.45rem !important;
+    }
+  }
+
+  .quota-card {
+    padding: 0.65rem !important;
+
+    .quota-title {
+      font-size: 0.6rem !important;
+    }
+
+    .quota-pill {
+      font-size: 0.64rem !important;
+      padding: 0.1rem 0.4rem !important;
+    }
+
+    .quota-meta {
+      font-size: 0.66rem !important;
+    }
+  }
+
+  .dialer-console {
+    padding: 0.85rem !important;
+
+    .dialer-phone-pill {
+      font-size: 0.95rem !important;
+      padding: 0.28rem 0.65rem !important;
+    }
+
+    .call-timer-live {
+      font-size: 0.78rem !important;
+      padding: 0.22rem 0.55rem !important;
+    }
+  }
+
+  // Modals
+  .crm-modal-header {
+    padding: 0.65rem 0.85rem !important;
+    h5 {
+      font-size: 0.92rem !important;
+    }
+  }
+
+  .crm-modal-body {
+    padding: 0.75rem 0.85rem !important;
+  }
+
+  .crm-modal-footer {
+    padding: 0.65rem 0.85rem !important;
+  }
+
+  // Table padding
+  .crm-table-wrapper .crm-table {
+    thead th {
+      padding: 0.45rem 0.55rem !important;
+      font-size: 0.62rem !important;
+    }
+    tbody td {
+      padding: 0.5rem 0.55rem !important;
+      font-size: 0.76rem !important;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  // Mobile app bottom-sheet style modals
+  .crm-modal-backdrop {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .crm-modal-dialog {
+    max-height: 92vh !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-bottom: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25) !important;
+    animation: slide-up-sheet 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @keyframes slide-up-sheet {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  // Page action header stacking on mobile phones
+  .crm-content-area > div > .d-flex.flex-wrap.align-items-center.justify-content-between.gap-3.mb-4 {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+
+    > div:last-child {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      .btn {
+        flex: 1 1 auto;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+      }
+      .btn-icon {
+        flex: 0 0 38px;
+      }
+    }
+  }
+
+  // Filter toolbar stacking on mobile
+  .panel-header > .d-flex.align-items-center.gap-2.flex-wrap {
+    width: 100%;
+    .input-group,
+    .form-select {
+      width: 100% !important;
+    }
+  }
+
+  // Pagination controls mobile wrap
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

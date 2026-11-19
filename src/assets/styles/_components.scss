@@ -1,0 +1,532 @@
+// ============================================================================
+// LoanCore CRM — Components
+// ============================================================================
+
+// 1. Metric cards ------------------------------------------------------------
+.crm-metric-card {
+  @include card-surface(1.25rem);
+  @include card-interactive;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  @media (max-width: 767.98px) {
+    padding: 1rem !important;
+    border-radius: 12px;
+  }
+
+  .metric-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.tone-primary {
+      background: $blue-50;
+      color: $brand;
+    }
+    &.tone-success {
+      background: rgba($success-color, 0.1);
+      color: $success-color;
+    }
+    &.tone-warning {
+      background: rgba($warning-color, 0.11);
+      color: $warning-color;
+    }
+    &.tone-danger {
+      background: rgba($danger-color, 0.1);
+      color: $danger-color;
+    }
+    &.tone-violet {
+      background: $surface-muted;
+      color: $ink-2;
+    }
+    &.tone-cyan {
+      background: rgba($info-color, 0.1);
+      color: $info-color;
+    }
+  }
+
+  .metric-value {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: $ink;
+    line-height: 1.15;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: $ink-3;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .metric-subtext {
+    font-size: 0.78rem;
+    color: $ink-3;
+  }
+}
+
+// 2. Status badges -----------------------------------------------------------
+.crm-badge {
+  &.status-interested,
+  &.status-sanctioned,
+  &.status-disbursed,
+  &.status-available {
+    @include status-pill(#ecf8f3, #0b6b4a, #b7e3d1);
+  }
+
+  &.status-callback,
+  &.status-verification,
+  &.status-wrapup {
+    @include status-pill(#fff6e8, #96560a, #f6d9a8);
+  }
+
+  &.status-not-interested,
+  &.status-rejected {
+    @include status-pill(#fef0ee, #b42318, #f8c9c3);
+  }
+
+  &.status-pending,
+  &.status-unassigned {
+    @include status-pill($surface-muted, $ink-2, $border-medium);
+  }
+
+  &.status-kyc,
+  &.status-oncall {
+    @include status-pill(#eef2fa, $info-color, #cbd7ee);
+  }
+
+  &.status-violet {
+    @include status-pill($surface-muted, $ink-2, $border-medium);
+  }
+}
+
+// 3. Panels ------------------------------------------------------------------
+.crm-panel {
+  @include card-surface(1.4rem);
+
+  @media (max-width: 767.98px) {
+    padding: 1rem !important;
+    border-radius: 12px;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid $border-light;
+
+    @media (max-width: 767.98px) {
+      .btn-group {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        display: inline-flex;
+        padding-bottom: 4px;
+        @include custom-scrollbar(4px);
+
+        .btn {
+          flex: 0 0 auto;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      gap: 0.5rem;
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $ink;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: -0.01em;
+
+      @media (max-width: 575.98px) {
+        font-size: 0.95rem;
+      }
+    }
+
+    .panel-subtitle {
+      font-size: 0.8rem;
+      color: $ink-3;
+      margin: 0.15rem 0 0;
+
+      @media (max-width: 575.98px) {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+// 4. Data tables -------------------------------------------------------------
+.crm-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  @include custom-scrollbar(6px);
+
+  .crm-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+
+    thead th {
+      background: $surface-subtle;
+      color: $ink-3;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid $border-light;
+      border-bottom: 1px solid $border-light;
+      white-space: nowrap;
+
+      &:first-child {
+        border-left: 1px solid $border-light;
+        border-top-left-radius: $radius-md;
+      }
+      &:last-child {
+        border-right: 1px solid $border-light;
+        border-top-right-radius: $radius-md;
+      }
+    }
+
+    tbody td {
+      padding: 0.85rem 1rem;
+      vertical-align: middle;
+      border-bottom: 1px solid $border-light;
+      font-size: 0.875rem;
+      color: $ink;
+    }
+
+    tbody tr {
+      transition: background-color 0.12s ease;
+      &:hover {
+        background-color: $surface-subtle;
+      }
+      &:last-child td {
+        border-bottom: none;
+      }
+      &.row-selected {
+        background-color: $blue-50;
+        td:first-child {
+          box-shadow: inset 3px 0 0 $brand;
+        }
+      }
+    }
+  }
+}
+
+// 5. Daily quota gauge -------------------------------------------------------
+.target-gauge-card {
+  background: linear-gradient(135deg, $blue-900 0%, $blue-700 55%, $blue-500 130%);
+  color: #ffffff;
+  border-radius: $radius-lg;
+  padding: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: $shadow-brand;
+  height: 100%;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+  }
+
+  .gauge-circle-wrap {
+    width: 96px;
+    height: 96px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .gauge-number {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .gauge-caption {
+    font-size: 0.68rem;
+    color: $blue-200;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .gauge-chip {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.72rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+}
+
+// Compact sidebar quota card
+.quota-card {
+  padding: 0.9rem;
+  border-radius: $radius-md;
+  background: $surface-subtle;
+  border: 1px solid $border-light;
+
+  .quota-title {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $ink-3;
+  }
+
+  .quota-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.14rem 0.55rem;
+    border-radius: 999px;
+    background: $brand;
+    color: #fff;
+  }
+
+  .quota-meta {
+    font-size: 0.72rem;
+    color: $ink-3;
+  }
+
+  .progress {
+    height: 6px;
+    background: $border-light;
+  }
+}
+
+// 6. Dialer ------------------------------------------------------------------
+.dialer-console {
+  @include card-surface(1.5rem);
+  border-top: 3px solid $brand;
+
+  .dialer-phone-pill {
+    font-family: $font-mono;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $ink;
+    background: $surface-subtle;
+    padding: 0.42rem 0.9rem;
+    border-radius: $radius-md;
+    border: 1px solid $border-medium;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .call-timer-live {
+    font-family: $font-mono;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0b6b4a;
+    background: #ecf8f3;
+    border: 1px solid #b7e3d1;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #12a176;
+      animation: pulse-ring 1.2s infinite;
+    }
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(18, 161, 118, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(18, 161, 118, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(18, 161, 118, 0);
+  }
+}
+
+// 7. Funnel stepper ----------------------------------------------------------
+.funnel-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .funnel-step {
+    padding: 0.9rem 1rem;
+    border-radius: $radius-md;
+    border: 1px solid $border-light;
+    background: $surface-subtle;
+    transition: all 0.2s ease;
+
+    &.completed {
+      background: #f1faf6;
+      border-color: #b7e3d1;
+      .step-index {
+        background: $success-color;
+        color: #fff;
+      }
+    }
+
+    &.current {
+      background: $blue-50;
+      border-color: $blue-200;
+      .step-index {
+        background: $brand;
+        color: #fff;
+      }
+    }
+
+    .step-index {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: $border-medium;
+      color: $ink-2;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// 8. Modals ------------------------------------------------------------------
+.crm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 34, 51, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.crm-modal-dialog {
+  background: #ffffff;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $border-light;
+
+  &.modal-lg {
+    max-width: 780px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .crm-modal-header {
+    flex-shrink: 0;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid $border-light;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+  }
+
+  .crm-modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
+    @include custom-scrollbar(6px);
+  }
+
+  .crm-modal-footer {
+    flex-shrink: 0;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $border-light;
+    background: $surface-subtle;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+}
+
+// ============================================================================
+// Skeleton Loading Shimmer
+// ============================================================================
+@keyframes crm-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.crm-skeleton {
+  background: linear-gradient(90deg, #f0f2f5 25%, #e2e6eb 50%, #f0f2f5 75%);
+  background-size: 200% 100%;
+  animation: crm-shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+  display: inline-block;
+
+  &.skeleton-dark {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.12) 25%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.12) 75%);
+    background-size: 200% 100%;
+    animation: crm-shimmer 1.5s ease-in-out infinite;
+  }
+}

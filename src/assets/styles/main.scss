@@ -1,0 +1,10 @@
+// ============================================================================
+// LoanCore CRM — Master Stylesheet
+// Order matters: tokens -> Bootstrap (themed by tokens) -> app partials -> utilities
+// ============================================================================
+@import 'variables';
+@import 'mixins';
+@import 'bootstrap/scss/bootstrap';
+@import 'layout';
+@import 'components';
+@import 'overrides';

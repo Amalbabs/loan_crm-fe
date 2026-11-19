@@ -1,0 +1,604 @@
+// ============================================================================
+// LoanCore CRM — Portal Shell (Sidebar, Topbar, Content)
+// Royal-blue navigation rail, white top bar, pale-blue canvas
+// ============================================================================
+
+.crm-app-shell {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  background-color: $surface-bg;
+  color: $ink;
+  font-family: $font-sans;
+  overflow: hidden;
+}
+
+// ---------------------------------------------------------------- Sidebar
+// Desktop fixed navigation rail (>= 992px)
+@media (min-width: 992px) {
+  [data-testid="ps-sidebar-root-test-id"],
+  #ps-sidebar-root-test-id,
+  .ps-sidebar-root,
+  .crm-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh !important;
+    z-index: 1030;
+    flex-shrink: 0;
+  }
+}
+
+// Mobile drawer mode (< 992px)
+@media (max-width: 991.98px) {
+  .ps-sidebar-root.ps-broken {
+    &:not(.ps-toggled) {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      width: 0 !important;
+    }
+
+    &.ps-toggled {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100vh !important;
+      width: 265px !important;
+      z-index: 1060 !important;
+      display: block !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  // Ensure sidebar container is on top of the backdrop (z-index 1065 vs 1050)
+  .ps-sidebar-container {
+    position: relative !important;
+    z-index: 1065 !important;
+    height: 100% !important;
+    width: 265px !important;
+    pointer-events: auto !important;
+    box-shadow: 4px 0 24px rgba(9, 26, 87, 0.4) !important;
+  }
+
+  // Backdrop covers screen behind the drawer (z-index 1050)
+  .ps-sidebar-backdrop {
+    z-index: 1050 !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(9, 26, 87, 0.5) !important;
+    pointer-events: auto !important;
+  }
+
+  // Ensure all menu elements in mobile drawer receive pointer events cleanly
+  .ps-menu-root,
+  .ps-menuitem-root,
+  .ps-menu-button {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+}
+
+.ps-sidebar-container {
+  background: linear-gradient(180deg, #153298 0%, #122a82 55%, #0e2068 100%) !important;
+}
+
+// Ensure icons and buttons are horizontally centered when sidebar is collapsed
+.ps-sidebar-root.ps-collapsed,
+[data-testid="ps-sidebar-root-test-id"].ps-collapsed {
+  .ps-menu-root,
+  ul {
+    padding-left: 0 !important;
+  }
+
+  .ps-menuitem-root {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .ps-menu-button {
+    width: calc(100% - 20px) !important;
+    margin: 4px auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    justify-content: center !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .ps-menu-icon {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin: 0 auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    svg {
+      margin: 0 auto !important;
+      display: block !important;
+    }
+  }
+
+  .ps-menu-label,
+  .ps-menu-suffix,
+  .ps-menu-prefix {
+    display: none !important;
+    width: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+.crm-sidebar {
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  background: linear-gradient(180deg, $blue-600 0%, $blue-700 55%, $blue-800 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+
+  .sidebar-brand {
+    height: $topbar-height;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $blue-700;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 12px rgba(9, 26, 87, 0.35);
+    }
+
+    .brand-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $blue-200;
+      font-weight: 700;
+    }
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 1.1rem 0.85rem;
+    overflow-y: auto;
+    @include custom-scrollbar(4px);
+
+    .nav-section-label {
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $blue-300;
+      padding: 0.5rem 0.75rem 0.45rem;
+      margin-top: 0.4rem;
+    }
+
+    .crm-nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: $radius-md;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      transition: background-color 0.15s ease, color 0.15s ease;
+
+      .nav-link-left {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+
+        svg {
+          color: rgba(255, 255, 255, 0.7);
+          transition: color 0.15s ease;
+        }
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+
+      // Active item: solid white pill (matches reference)
+      &.active {
+        background: #ffffff;
+        color: $blue-700;
+        font-weight: 700;
+        box-shadow: 0 6px 14px -6px rgba(9, 26, 87, 0.6);
+
+        .nav-link-left svg {
+          color: $blue-600;
+        }
+      }
+
+      .nav-badge {
+        font-size: 0.68rem;
+        padding: 0.14rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        color: #ffffff;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      &.active .nav-badge {
+        background: $blue-50;
+        color: $blue-700;
+      }
+    }
+
+    // Quota card sitting on the blue rail
+    .quota-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.16);
+
+      .quota-title,
+      .quota-meta {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .quota-pill {
+        background: #ffffff;
+        color: $blue-700;
+      }
+
+      .progress {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .progress-bar {
+        background-color: #ffffff !important;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(9, 26, 87, 0.28);
+  }
+}
+
+// ---------------------------------------------------------------- Main
+.crm-main-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  min-width: 0;
+  width: calc(100% - 265px);
+  margin-left: 265px;
+  overflow: hidden;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.collapsed {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+  }
+
+  @media (max-width: 991.98px) {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+}
+
+.crm-topbar {
+  height: $topbar-height;
+  @include glass-header;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+
+  @media (max-width: 767.98px) {
+    padding: 0 0.85rem;
+    height: 56px;
+  }
+
+  .portal-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: $blue-50;
+    border: 1px solid $blue-100;
+    color: $blue-700;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .portal-switcher {
+    display: inline-flex;
+    background: $surface-muted;
+    padding: 0.22rem;
+    border-radius: 10px;
+    gap: 0.2rem;
+
+    .switch-btn {
+      border: none;
+      background: transparent;
+      padding: 0.36rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $ink-3;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.15s ease;
+
+      @media (max-width: 575.98px) {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+      }
+
+      &.active {
+        background: $blue-600;
+        color: #ffffff;
+        box-shadow: $shadow-brand;
+      }
+
+      &:hover:not(.active) {
+        color: $ink;
+      }
+    }
+  }
+}
+
+.crm-content-area {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - #{$topbar-height});
+  max-height: calc(100vh - #{$topbar-height});
+  padding: 1.75rem 2rem 3rem;
+  width: 100%;
+  @include custom-scrollbar(6px);
+
+  @media (max-width: 991.98px) {
+    padding: 1rem 0.85rem calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+    height: calc(100vh - 56px) !important;
+    max-height: calc(100vh - 56px) !important;
+  }
+
+  h3.fw-extrabold {
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+
+    @media (max-width: 767.98px) {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// ---------------------------------------------------------------- Mobile App Bottom Nav
+.crm-mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(21, 50, 152, 0.1);
+  box-shadow: 0 -4px 18px rgba(18, 42, 130, 0.07);
+  z-index: 1040;
+  padding: 0 0.5rem;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 48px;
+    padding: 4px 2px;
+    color: #64748b;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+
+    .mobile-nav-icon {
+      color: #64748b;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-nav-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-top: 2px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .mobile-nav-badge {
+      font-size: 0.58rem;
+      padding: 0.15em 0.38em;
+      transform: translate(25%, -25%) !important;
+    }
+
+    &.active {
+      color: #153298;
+
+      .mobile-nav-icon {
+        color: #153298;
+        transform: scale(1.12);
+      }
+
+      .mobile-nav-label {
+        font-weight: 800;
+        color: #153298;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        width: 18px;
+        height: 3px;
+        border-radius: 999px;
+        background: #ff7a18;
+      }
+    }
+
+    &:active {
+      transform: scale(0.94);
+    }
+  }
+}
+
+// Toast
+.crm-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: $ink;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  border-left: 4px solid $red-500;
+  font-size: 0.84rem;
+  font-weight: 600;
+  max-width: 420px;
+  animation: toast-in 0.25s ease;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Mobile
+@media (max-width: 991.98px) {
+  .crm-sidebar {
+    transform: translateX(-100%);
+    &.mobile-open {
+      transform: translateX(0);
+      box-shadow: $shadow-lg;
+    }
+  }
+  .crm-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 26, 87, 0.45);
+    z-index: 1025;
+  }
+}
+
+// ============================================================================
+// react-pro-sidebar: Vertical Orange Active Indicator Line & Alignment
+// ============================================================================
+.ps-sidebar-root {
+  .ps-menu-button {
+    position: relative;
+    border-left: none !important;
+    transition: all 0.15s ease;
+
+    .ps-menu-icon {
+      width: 26px !important;
+      min-width: 26px !important;
+      height: 26px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: margin 0.15s ease;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3.5px;
+      border-radius: 0;
+      background-color: transparent;
+      transition: all 0.15s ease;
+      z-index: 2;
+    }
+
+    &.ps-active::before,
+    &.active::before,
+    &:hover.ps-active::before,
+    &:hover.active::before {
+      background-color: $orange-active !important;
+    }
+  }
+
+  // Exact icon centering when collapsed
+  &.ps-collapsed {
+    .ps-menu-button {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+
+      .ps-menu-icon {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  .ps-menuitem-root.ps-active > .ps-menu-button::before,
+  .ps-menuitem-root > .ps-menu-button.ps-active::before,
+  .ps-menuitem-root > .ps-menu-button.active::before {
+    background-color: $orange-active !important;
+  }
+}
