@@ -214,12 +214,10 @@ const AdminDashboard = () => {
             title={
               Number(breakdownCounts.newLeads || 0) <= 0
                 ? 'No unassigned leads available in the pool.'
-                : 'Distribute new leads across active staff'
+                : 'Distribute unassigned leads across active staff'
             }
           >
-            {isDistributing
-              ? 'Distributing...'
-              : `Auto-Distribute Leads (${breakdownCounts.newLeads} NEW)`}
+            {isDistributing ? 'Distributing...' : 'Auto-Distribute Leads'}
             <LuSend size={17} />
           </button>
         </div>
@@ -285,11 +283,11 @@ const AdminDashboard = () => {
               <MetricCard
                 label="Total Leads &amp; New Today"
                 value={dashboardStats?.totalLeads || leads.length}
-                subtext={`+${dashboardStats?.newLeadsToday || 0} New Leads Today (${breakdownCounts.newLeads} NEW)`}
+                subtext={`+${dashboardStats?.newLeadsToday || 0} New Leads Today`}
                 icon={FaRegFileAlt }
                 tone="warning"
-                badgeText={breakdownCounts.newLeads > 0 ? `${breakdownCounts.newLeads} New` : 'Synced'}
-                badgeTone={breakdownCounts.newLeads > 0 ? 'warning' : 'success'}
+                badgeText={dashboardStats?.newLeadsToday > 0 ? `+${dashboardStats.newLeadsToday} Today` : 'Synced'}
+                badgeTone={dashboardStats?.newLeadsToday > 0 ? 'warning' : 'success'}
               />
             </div>
           </>

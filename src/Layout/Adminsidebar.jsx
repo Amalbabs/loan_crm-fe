@@ -26,10 +26,7 @@ const AdminSidebar = ({
   const getBadgeValue = (badgeKey) => {
     if (badgeKey === 'completionRate') return `${completionRate}%`;
     if (badgeKey === 'unassignedLeads') {
-      const newStatus = (dashboardStats?.statusBreakdown || []).find(
-        (s) => (s.status || '').toUpperCase() === 'NEW'
-      );
-      return newStatus?.count !== undefined ? `${newStatus.count} New` : null;
+      return null;
     }
     if (badgeKey === 'callVelocity') {
       return `${totalCalls}/${totalTarget}`;

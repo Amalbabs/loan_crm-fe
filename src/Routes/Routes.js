@@ -99,7 +99,7 @@ export const ADMIN_ROUTES = [
     name: 'Lead Distribution',
     icon: BsFillFileEarmarkTextFill,
     component: LeadDistribution,
-    badgeKey: 'unassignedLeads',
+    badgeKey: null,
   },
   {
     path: 'targets',

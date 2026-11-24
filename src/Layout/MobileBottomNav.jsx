@@ -17,10 +17,7 @@ const MobileBottomNav = ({
   const getBadgeValue = (badgeKey) => {
     if (!badgeKey) return null;
     if (badgeKey === 'unassignedLeads') {
-      const newStatus = (dashboardStats?.statusBreakdown || []).find(
-        (s) => (s.status || '').toUpperCase() === 'NEW'
-      );
-      return newStatus?.count && newStatus.count > 0 ? newStatus.count : null;
+      return null;
     }
     if (badgeKey === 'pendingCalls') {
       return newLeadsCount > 0 ? newLeadsCount : null;
